@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="hu">
 <head>
@@ -30,6 +31,7 @@ body {
   min-height: 100vh;
   background-color: light-dark(#f4faef, #172019);
   color: light-dark(#19311f, #eff8ee);
+  border-radius: 0;
   padding: 28px 18px 40px;
 }
 
@@ -334,7 +336,6 @@ const fruits = [
   ['körte', '🍐', 'Körte'],
   ['barack', '🍑', 'Barack'],
   ['kiwi', '🥝', 'Kiwi'],
-  ['mangó', '🥭', 'Mangó'],
   ['ananász', '🍍', 'Ananász'],
   ['cseresznye', '🍒', 'Cseresznye']
 ];
@@ -358,82 +359,4 @@ const save = () =>
 
 function render() {
 
-  document.getElementById('fruits').innerHTML =
-    fruits.map(([id, emoji, name]) => `
-
-      <button
-        class="fruit ${counts[id] ? 'selected' : ''}"
-        data-id="${id}"
-        aria-label="${name}: ${counts[id] || 0} adag"
-      >
-
-        <div class="emoji" aria-hidden="true">
-          ${emoji}
-        </div>
-
-        <div class="name">
-          ${name}
-        </div>
-
-        <div class="meta">
-          ma elfogyasztva
-        </div>
-
-        <span class="badge">
-          ${counts[id] || 0}
-        </span>
-
-      </button>
-
-    `).join('');
-
-  document.getElementById('total').textContent =
-    total();
-
-  document.getElementById('progress').style.width =
-    Math.min(100, total() / 5 * 100) + '%';
-}
-
-document
-  .getElementById('fruits')
-  .addEventListener('click', e => {
-
-    const card =
-      e.target.closest('.fruit');
-
-    if (!card) return;
-
-    const id = card.dataset.id;
-
-    counts[id] =
-      (counts[id] || 0) + 1;
-
-    save();
-    render();
-  });
-
-document
-  .getElementById('reset')
-  .addEventListener('click', () => {
-
-    if (
-      total() &&
-      !confirm(
-        'Biztosan nullázod a mai gyümölcsnaplót?'
-      )
-    ) {
-      return;
-    }
-
-    counts = {};
-
-    save();
-    render();
-  });
-
-render();
-
-</script>
-
-</body>
-</html>
+  document
